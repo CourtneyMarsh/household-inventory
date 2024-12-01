@@ -1,6 +1,4 @@
 import datetime
-import firebase_admin
-from firebase_admin import credentials
 
 
 fake_database_inventory = {
@@ -28,18 +26,19 @@ fake_database_inventory = {
 # Your document is "Courtneys House" or whatever
 # Your document contents fridge, pantry, etc
 
+def get_locations():
+    data = fake_database_inventory["Inventory"]
+    locations = []
+    for location in data.keys():
+        locations.append(location)
 
-def get_inventory(category_name, inventory):
-    return fake_database_inventory[category_name][inventory]
+    return locations
+
+def create_location_entry(location_name):
+    fake_database_inventory["Inventory"][location_name] = {}
+    return get_locations()
 
 
-def get_inventory_item(category_name, inventory, item):
-    return fake_database_inventory[category_name][inventory][item]
 
 
-
-if __name__ == "__main__":
-
-    cred = credentials.Certificate("path/to/serviceAccountKey.json")
-    firebase_admin.initialize_app(cred)
 

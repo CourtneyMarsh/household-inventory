@@ -1,9 +1,10 @@
 from services import category_service
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, Blueprint
 
-app = Flask(__name__)
+category_blueprint = Blueprint('category_blueprint', __name__)
 
-@app.route("/get-categories/<location_name>")
+
+@category_blueprint.route("/get-categories/<location_name>")
 def get_categories(location_name):
     data = category_service.get_categories(location_name)
 
@@ -14,7 +15,7 @@ def get_categories(location_name):
 
     return jsonify(data)
 
-@app.route("/create-category-entry", methods=["POST"])
+@category_blueprint.route("/create-category-entry", methods=["POST"])
 def create_category_entry():
     user_input = request.get_json()
     data = category_service.create_category_entry(user_input)
@@ -25,10 +26,6 @@ def create_category_entry():
         }, 502
 
     return jsonify(data), 201
-
-if __name__ == "__main__":
-    app.run(debug=True)
-
 
 
 # GET: Get all categories by location ID

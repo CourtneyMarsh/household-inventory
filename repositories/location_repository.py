@@ -24,15 +24,9 @@ fake_database_inventory = {
     }
 }
 
-
-
 # Your collection is inventory
 # Your document is "Courtneys House" or whatever
 # Your document contents fridge, pantry, etc
-
-
-def get_categories(category_name):
-    return fake_database_inventory[category_name]
 
 
 def get_inventory(category_name, inventory):

@@ -1,4 +1,4 @@
-from repositories.inventory_repository import fake_database_inventory
+from repositories.location_repository import fake_database_inventory
 
 
 def validate_category_exists_in_database(category_name):
